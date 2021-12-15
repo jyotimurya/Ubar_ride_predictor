@@ -1,0 +1,62 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <title>Uber Rides</title>
+</head>
+
+<body style=background-color:rgb(164,248,7)>
+<h1 style="text-align: center; " style> Uber Rides Predictior </h1>
+<hr/>
+
+<form action="{% url 'test' %}" method="post">
+    {% csrf_token %}
+    <b>Enter Price Per Week</b>
+    <input type="number" name="ppw" placeholder="Enter The Price Per Week"/><br/><br/>
+    <b>Enter population</b>
+    <input type="number" name="pn" placeholder="Enter population"/><br/><br/>
+    <b>Enter Monthly Income</b>
+    <input type="number" name="mi" placeholder="Enter Monthly Income"/><br/><br/>
+    <b>Enter Average Parking Per Week</b>
+    <input type="number" name="appw" placeholder="Enter Average Parking Per Week"/><br/><br/>
+    
+    <button >
+      <input  type="submit" value="Predict"/>
+      <style>
+        input[type=submit] {
+        background-color: #4117fd;
+        border: none;
+        color: #fff;
+        padding: 10px 20px;
+        
+        margin: 2px 2px;
+        cursor: pointer;
+      }
+    </style>
+    </button>
+    <br/><br/>
+    <hr/>
+    
+    <table width=80%  border="1" bgcolor=white >
+        <tr style="color:white" bgcolor="red">
+            
+            <th>Price Per Week</th>
+            <th>Population</th>
+            <th>Monthly Income</th>
+            <th>Average Parking Per Week</th>
+            <th>No. of rides</th>
+        </tr>
+        {% for r in res %}
+        <tr>
+            <td>{{r.ppw}}</td>
+            <td>{{r.pn}}</td>
+            <td>{{r.mi}}</td>
+            <td>{{r.appm}}</td>
+            <td>{{r.result}}</td>
+        </tr>
+        {% endfor %}
+    </table>
+</form>
+</body>
+
+</html>
